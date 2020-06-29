@@ -3,9 +3,7 @@ package com.example.kotlincoroutines
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +24,19 @@ class MainActivity : AppCompatActivity() {
             Log.d("ojan",test1)
             val test2 = test2()
             Log.d("ojan",test2)
+        }
+
+        //Coroutine Contex
+        GlobalScope.launch(Dispatchers.Main){
+            Log.d("ojan","Hi im from ${Thread.currentThread().name}")
+        }
+        //for networking call
+        GlobalScope.launch {
+            Log.d("ojan","Hi im from ${Thread.currentThread().name}")
+            withContext(Dispatchers.Main){
+                Log.d("ojan","Hi im from ${Thread.currentThread().name}")
+            }
+
         }
 
     }
